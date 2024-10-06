@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">LOLChampions</string>
-    <string name="lore_del_campe_n_este_es_un_breve_resumen_sobre_la_historia_y_caracter_sticas_del_campe_n">Lore del Campeón. Este es un breve resumen sobre la historia y características del campeón.</string>
-    <string name="t_tulo_del_campe_n">Título del Campeón</string>
-    <string name="nombre_del_campe_n">Nombre del Campeón</string>
+    <string name="champion_image">Imagen del campeón</string>
+    <string name="nombre_del_campeon">Nombre del Campeón</string>
+    <string name="titulo_del_campeon">Título del Campeón</string>
+    <string name="lore_del_campeon">Lore del Campeón</string>
 </resources>
+
