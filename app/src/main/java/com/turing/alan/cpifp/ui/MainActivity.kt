@@ -5,33 +5,33 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.turing.alan.cpifp.R
-import com.turing.alan.cpifp.data.InMemoryChampionsRepository
+import com.turing.alan.cpifp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var recyclerView: RecyclerView
+
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
 
-        recyclerView = findViewById(R.id.recycler_view_champions)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        // Usar ViewBinding para inflar el layout
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val champions = InMemoryChampionsRepository.getInstance().getChampions()
-        val adapter = ChampionAdapter(champions)
-        recyclerView.adapter = adapter
-
-        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-
+        // Configurar ajustes de las barras del sistema
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Cargar el ChampionListFragment en el contenedor de fragmentos
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, ChampionListFragment())
+                .commit()
         }
     }
 }
